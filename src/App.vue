@@ -1,18 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <tree width="200px" :props="list">
+      <template v-slot:default="scope">
+        <span>{{ scope.data.label }}</span>
+      </template>
+    </tree>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Tree from './components/tree.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld
-  }
+    Tree,
+  },
+  data() {
+    return {
+      list: [
+        {
+          label: '节点1',
+          children: [
+            {
+              label: '节点1-1',
+              children: [
+                {
+                  label: '节点1-1-1',
+                },
+                 {
+                  label: '节点1-1-2',
+                },
+                 {
+                  label: '节点1-1-3',
+                },
+              ],
+            },
+             {
+              label: '节点1-2',
+            },
+          ],
+        },
+        {
+          label: '节点2',
+        },
+      ],
+    };
+  },
 };
 </script>
 
